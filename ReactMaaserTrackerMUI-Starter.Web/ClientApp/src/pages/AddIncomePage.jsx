@@ -27,7 +27,7 @@ const AddIncomePage = () => {
       const onIncomeChange = (e) => {
         const copy = {...income}
         copy[e.target.name] = e.target.value 
-        setIncome({...copy})
+        setIncome(copy)
     }
 
     const onSourceChange = (e, value) => {
@@ -49,7 +49,6 @@ const AddIncomePage = () => {
                 getOptionLabel={(option) => option.name}
                 fullWidth
                 margin="normal"
-                inputValue={income.source}
                 name='source'
                 onChange={onSourceChange}
                 renderInput={(params) => <TextField {...params} label="Source" variant="outlined" />}

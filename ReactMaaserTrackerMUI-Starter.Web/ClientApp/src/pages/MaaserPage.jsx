@@ -4,8 +4,8 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 const MaaserPage = () => {
-
   const [maaserPayments, setMaaserPayments] = useState([])
+  
   useEffect(() => {
     const getMaaser = async () => {
       const { data } = await axios.get('/api/maasertracker/getmaaser')

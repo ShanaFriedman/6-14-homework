@@ -4,7 +4,6 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 const IncomePage = () => {
-
   const [groupBySource, setGroupBySource] = useState(false);
   const [incomes, setIncomes] = useState([])
 
@@ -26,18 +25,18 @@ const IncomePage = () => {
         }
       })
     })
+
     const sorted = flatIncomes.sort((a, b) => new Date(a.date) - new Date(b.date));
     return sorted
   }
 
-  const flattenedList = flatList(incomes) || [];
-
+  const flattenedList = flatList(incomes);
+  
   return (
     <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3 }}>
       <Typography variant="h2" gutterBottom component="div">
         Income History
       </Typography>
-
       <FormControlLabel
         control={
           <Checkbox
@@ -49,7 +48,6 @@ const IncomePage = () => {
         }
         label="Group by source"
       />
-
       {!groupBySource ? (
         <TableContainer component={Paper} sx={{ maxWidth: '80%', width: '80%' }}>
           <Table sx={{ minWidth: 650 }}>
@@ -69,7 +67,6 @@ const IncomePage = () => {
                   <TableCell align="right" sx={{ fontSize: '18px' }}>{income.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TableCell>
                   <TableCell align="right" sx={{ fontSize: '18px' }}>{dayjs(income.date).format('MMMM D, YYYY')}</TableCell>
                 </TableRow>)
-
               )}
             </TableBody>
           </Table>
@@ -112,6 +109,3 @@ const IncomePage = () => {
 }
 
 export default IncomePage;
-
-
-

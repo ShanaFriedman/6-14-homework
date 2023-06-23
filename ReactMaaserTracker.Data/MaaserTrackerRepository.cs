@@ -23,7 +23,7 @@ namespace ReactMaaserTracker.Data
         public List<Source> GetSources()
         {
             var context = new MaaserDbContext(_connectionString);
-            return context.Sources.ToList();
+            return context.Sources.Include(s => s.Incomes).ToList();
         }
         public void UpdateSource(Source s)
         {
@@ -48,11 +48,6 @@ namespace ReactMaaserTracker.Data
             context.Incomes.Add(i);
             context.SaveChanges();
         }
-        //public List<Income> GetIncomes()
-        //{
-        //    var context = new MaaserDbContext(_connectionString);
-        //    return context.Incomes.Include(i => i.Source).ToList();
-        //}
         public void AddMaaser(Maaser m)
         {
             var context = new MaaserDbContext(_connectionString);

@@ -16,12 +16,12 @@ const AddMaaserPage =() => {
     const onMaaserChange = e => {
         const copy = {...maaser}
         copy[e.target.name] = e.target.value 
-        setMaaser({...copy})
+        setMaaser(copy)
     }
 
     const onAddMaasur = async () => {
         await axios.post('/api/maasertracker/addmaaser', maaser)
-        navigate('/')
+        navigate('/maaser')
     }
 
     return (

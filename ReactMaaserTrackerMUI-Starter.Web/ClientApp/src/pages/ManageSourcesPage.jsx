@@ -6,7 +6,6 @@ const ManageSourcesPage = () => {
   const [sources, setSources] = useState([])
   const [open, setOpen] = useState(false);
   const [selectedSource, setSelectedSource] = useState('');
-  //const [editingSource, setEditingSource] = useState(null);
   const [isEditing, setIsEditing] = useState(false)
 
   const getSources = async () => {
@@ -35,7 +34,6 @@ const ManageSourcesPage = () => {
       await axios.post('/api/maasertracker/editsource', {name: selectedSource.name, id: selectedSource.id})
       getSources()
     } else {
-      console.log("add")
       await axios.post('/api/maasertracker/addsource', {name: selectedSource.name})
       getSources()
     }
@@ -48,7 +46,6 @@ const ManageSourcesPage = () => {
   };
 
   const onTextBoxChange = e => {
-    console.log(e.target.value)
     setSelectedSource({...selectedSource, name: e.target.value})
   }
 
@@ -73,7 +70,7 @@ const ManageSourcesPage = () => {
                 <TableCell sx={{ fontSize: '18px' }}>{source.name}</TableCell>
                 <TableCell align="right" sx={{ fontSize: '18px' }}>
                   <Button color="primary" variant="outlined" sx={{ margin: '0 5px' }} onClick={() => handleOpen(source)}>Edit</Button>
-                  <Button color="secondary" variant="outlined" sx={{ margin: '0 5px' }} onClick={() => handleDelete(source)}>Delete</Button>
+                  <Button color="secondary" variant="outlined" sx={{ margin: '0 5px' }} disabled={source.incomes.length} onClick={() => handleDelete(source)}>Delete</Button>
                 </TableCell>
               </TableRow>
             ))}

@@ -85,8 +85,8 @@ namespace ReactMaaserTrackerMUI_Starter.Web.Controllers
         public List<Source> GetIncomes()
         {
             var repo = new MaaserTrackerRepository(_connectionString);
-            List<Source> sources = repo.GetSourcesWithIncomes();
-            return sources;
+            return repo.GetSourcesWithIncomes();
+            //return sources;
         }
     }
 }
